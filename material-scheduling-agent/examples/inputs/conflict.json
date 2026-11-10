@@ -1,0 +1,10 @@
+{
+  "request_id": "example_conflict",
+  "materials": [
+    {
+      "asset_id": "M01",
+      "required_at": "2026-11-11T18:00:00+08:00",
+      "hard_requirement": true
+    }
+  ]
+}

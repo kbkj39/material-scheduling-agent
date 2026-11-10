@@ -1,0 +1,19 @@
+{
+  "description": "全部为合成素材、规则、时段；不包含真实业务或个人资料。候选时段为 Asia/Shanghai。",
+  "materials": {
+    "M01": {"title": "字幕编辑功能演示", "platform": "抖音", "content": "演示字幕编辑与导出操作。", "rights": "cleared", "source_id": "SYNTHETIC-01"},
+    "M02": {"title": "新手剪辑教程", "platform": "抖音", "content": "分步介绍剪辑操作。", "source_id": "SYNTHETIC-02"},
+    "M03": {"title": "活动推广样稿", "platform": "抖音", "content": "购买课程保证收益。", "rights": "cleared", "source_id": "SYNTHETIC-03"},
+    "M04": {"title": "素材管理介绍", "platform": "视频号", "content": "展示素材整理功能。", "rights": "cleared", "source_id": "SYNTHETIC-04"}
+  },
+  "rules": {
+    "version": "synthetic-2026-11-10",
+    "required_fields": ["title", "platform", "content", "rights"],
+    "blocked_terms": [
+      {"id": "R01", "term": "保证收益", "reason": "禁止未经证实的收益保证"},
+      {"id": "R02", "term": "效率提升80%", "reason": "素材未提供可验证的效果数据"}
+    ]
+  },
+  "slots": ["2026-11-11T18:00:00+08:00", "2026-11-11T19:00:00+08:00", "2026-11-11T20:00:00+08:00"],
+  "schedule": [{"asset_id": "EXISTING01", "at": "2026-11-11T18:00:00+08:00"}]
+}

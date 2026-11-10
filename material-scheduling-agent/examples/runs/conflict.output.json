@@ -1,0 +1,160 @@
+{
+  "request_id": "example_conflict",
+  "mode": "mock",
+  "status": "pending_confirmation",
+  "stop_reason": "model_finished",
+  "published": false,
+  "message": "已保存待确认草稿，替代时段须用户确认；尚未发布。",
+  "items": [
+    {
+      "asset_id": "M01",
+      "requested_at": "2026-11-11T18:00:00+08:00",
+      "suggested_at": "2026-11-11T19:00:00+08:00",
+      "audit_status": "approved",
+      "risks": [],
+      "pending_confirmations": [
+        "原硬性发布时间保持不变；请确认建议的替代时段 2026-11-11T19:00:00+08:00"
+      ],
+      "missing_fields": [],
+      "draft": {
+        "status": "saved",
+        "asset_id": "M01",
+        "confirmation_status": "pending_confirmation",
+        "id": "draft_6ad746b24b0af913eb9d",
+        "original_required_at": "2026-11-11T18:00:00+08:00",
+        "proposed_at": "2026-11-11T19:00:00+08:00",
+        "request_id": "example_conflict",
+        "record_status": "draft"
+      },
+      "status": "pending_confirmation",
+      "errors": []
+    }
+  ],
+  "trace": [
+    {
+      "step": 1,
+      "action": "read_material",
+      "arguments": {
+        "asset_id": "M01"
+      },
+      "reason": "[MOCK] 先读取素材，核对可用信息。",
+      "observation": {
+        "ok": true,
+        "asset_id": "M01",
+        "material": {
+          "title": "字幕编辑功能演示",
+          "platform": "抖音",
+          "content": "演示字幕编辑与导出操作。",
+          "rights": "cleared",
+          "source_id": "SYNTHETIC-01"
+        },
+        "missing_fields": []
+      }
+    },
+    {
+      "step": 2,
+      "action": "check_rules",
+      "arguments": {
+        "asset_id": "M01"
+      },
+      "reason": "[MOCK] 素材已读取，检查审核规则。",
+      "observation": {
+        "ok": true,
+        "asset_id": "M01",
+        "audit_status": "approved",
+        "missing_fields": [],
+        "risks": []
+      }
+    },
+    {
+      "step": 3,
+      "action": "query_slots",
+      "arguments": {
+        "asset_id": "M01",
+        "preferred_at": "2026-11-11T18:00:00+08:00"
+      },
+      "reason": "[MOCK] 审核通过，查询原要求时段的占用情况。",
+      "observation": {
+        "ok": true,
+        "asset_id": "M01",
+        "requested_at": "2026-11-11T18:00:00+08:00",
+        "requested_available": false,
+        "preferred_at": "2026-11-11T18:00:00+08:00",
+        "preferred_available": false,
+        "available_slots": [
+          "2026-11-11T19:00:00+08:00",
+          "2026-11-11T20:00:00+08:00"
+        ],
+        "occupied_slots": [
+          "2026-11-11T18:00:00+08:00"
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "action": "query_slots",
+      "arguments": {
+        "asset_id": "M01",
+        "preferred_at": "2026-11-11T19:00:00+08:00"
+      },
+      "reason": "[MOCK] 原时段不可用或有已确认替代要求，补查候选时段。",
+      "observation": {
+        "ok": true,
+        "asset_id": "M01",
+        "requested_at": "2026-11-11T18:00:00+08:00",
+        "requested_available": false,
+        "preferred_at": "2026-11-11T19:00:00+08:00",
+        "preferred_available": true,
+        "available_slots": [
+          "2026-11-11T19:00:00+08:00",
+          "2026-11-11T20:00:00+08:00"
+        ],
+        "occupied_slots": [
+          "2026-11-11T18:00:00+08:00"
+        ]
+      }
+    },
+    {
+      "step": 5,
+      "action": "save_draft",
+      "arguments": {
+        "asset_id": "M01",
+        "proposed_at": "2026-11-11T19:00:00+08:00"
+      },
+      "reason": "[MOCK] 保存草稿；硬要求的未确认替代时间交由工具标记待确认。",
+      "observation": {
+        "ok": true,
+        "asset_id": "M01",
+        "draft": {
+          "asset_id": "M01",
+          "confirmation_status": "pending_confirmation",
+          "id": "draft_6ad746b24b0af913eb9d",
+          "original_required_at": "2026-11-11T18:00:00+08:00",
+          "proposed_at": "2026-11-11T19:00:00+08:00",
+          "request_id": "example_conflict",
+          "status": "draft"
+        },
+        "duplicate": false
+      }
+    },
+    {
+      "step": 6,
+      "action": "finish",
+      "arguments": {
+        "status": "pending_confirmation",
+        "message": "模拟决策结束；最终事实以工具回执为准。"
+      },
+      "reason": "[MOCK] 已处理可执行步骤，返回草稿与待处理事项。",
+      "observation": {
+        "ok": true,
+        "note": "Final task status is derived from tool evidence."
+      }
+    }
+  ],
+  "limits": {
+    "max_steps": 20,
+    "model_turns": 6,
+    "tool_calls": 5
+  },
+  "duration_seconds": 0.006
+}

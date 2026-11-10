@@ -1,0 +1,36 @@
+[
+  {
+    "step": 1,
+    "action": "read_material",
+    "arguments": {
+      "asset_id": "M02"
+    },
+    "reason": "[MOCK] 先读取素材，核对可用信息。",
+    "observation": {
+      "ok": true,
+      "asset_id": "M02",
+      "material": {
+        "title": "新手剪辑教程",
+        "platform": "抖音",
+        "content": "分步介绍剪辑操作。",
+        "source_id": "SYNTHETIC-02"
+      },
+      "missing_fields": [
+        "rights"
+      ]
+    }
+  },
+  {
+    "step": 2,
+    "action": "finish",
+    "arguments": {
+      "status": "needs_information",
+      "message": "模拟决策结束；最终事实以工具回执为准。"
+    },
+    "reason": "[MOCK] 已处理可执行步骤，返回草稿与待处理事项。",
+    "observation": {
+      "ok": true,
+      "note": "Final task status is derived from tool evidence."
+    }
+  }
+]

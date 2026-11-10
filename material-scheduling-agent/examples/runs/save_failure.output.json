@@ -1,0 +1,132 @@
+{
+  "request_id": "example_save_failure",
+  "mode": "mock",
+  "status": "failed",
+  "stop_reason": "model_finished",
+  "published": false,
+  "message": "任务失败，请查看工具或模型错误；未发布。",
+  "items": [
+    {
+      "asset_id": "M01",
+      "requested_at": "2026-11-11T19:00:00+08:00",
+      "suggested_at": "2026-11-11T19:00:00+08:00",
+      "audit_status": "approved",
+      "risks": [],
+      "pending_confirmations": [],
+      "missing_fields": [],
+      "draft": {
+        "status": "failed",
+        "error": {
+          "code": "injected_failure",
+          "message": "已注入 save_draft 工具失败。",
+          "retryable": true
+        }
+      },
+      "status": "failed",
+      "errors": [
+        {
+          "code": "injected_failure",
+          "message": "已注入 save_draft 工具失败。",
+          "retryable": true
+        }
+      ]
+    }
+  ],
+  "trace": [
+    {
+      "step": 1,
+      "action": "read_material",
+      "arguments": {
+        "asset_id": "M01"
+      },
+      "reason": "[MOCK] 先读取素材，核对可用信息。",
+      "observation": {
+        "ok": true,
+        "asset_id": "M01",
+        "material": {
+          "title": "字幕编辑功能演示",
+          "platform": "抖音",
+          "content": "演示字幕编辑与导出操作。",
+          "rights": "cleared",
+          "source_id": "SYNTHETIC-01"
+        },
+        "missing_fields": []
+      }
+    },
+    {
+      "step": 2,
+      "action": "check_rules",
+      "arguments": {
+        "asset_id": "M01"
+      },
+      "reason": "[MOCK] 素材已读取，检查审核规则。",
+      "observation": {
+        "ok": true,
+        "asset_id": "M01",
+        "audit_status": "approved",
+        "missing_fields": [],
+        "risks": []
+      }
+    },
+    {
+      "step": 3,
+      "action": "query_slots",
+      "arguments": {
+        "asset_id": "M01",
+        "preferred_at": "2026-11-11T19:00:00+08:00"
+      },
+      "reason": "[MOCK] 审核通过，查询原要求时段的占用情况。",
+      "observation": {
+        "ok": true,
+        "asset_id": "M01",
+        "requested_at": "2026-11-11T19:00:00+08:00",
+        "requested_available": true,
+        "preferred_at": "2026-11-11T19:00:00+08:00",
+        "preferred_available": true,
+        "available_slots": [
+          "2026-11-11T19:00:00+08:00",
+          "2026-11-11T20:00:00+08:00"
+        ],
+        "occupied_slots": [
+          "2026-11-11T18:00:00+08:00"
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "action": "save_draft",
+      "arguments": {
+        "asset_id": "M01",
+        "proposed_at": "2026-11-11T19:00:00+08:00"
+      },
+      "reason": "[MOCK] 保存草稿；硬要求的未确认替代时间交由工具标记待确认。",
+      "observation": {
+        "ok": false,
+        "error": {
+          "code": "injected_failure",
+          "message": "已注入 save_draft 工具失败。",
+          "retryable": true
+        }
+      }
+    },
+    {
+      "step": 5,
+      "action": "finish",
+      "arguments": {
+        "status": "failed",
+        "message": "模拟决策结束；最终事实以工具回执为准。"
+      },
+      "reason": "[MOCK] 已处理可执行步骤，返回草稿与待处理事项。",
+      "observation": {
+        "ok": true,
+        "note": "Final task status is derived from tool evidence."
+      }
+    }
+  ],
+  "limits": {
+    "max_steps": 20,
+    "model_turns": 5,
+    "tool_calls": 4
+  },
+  "duration_seconds": 0.003
+}

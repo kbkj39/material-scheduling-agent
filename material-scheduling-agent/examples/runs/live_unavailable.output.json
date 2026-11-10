@@ -1,0 +1,9 @@
+{
+  "status": "failed",
+  "mode": "live",
+  "published": false,
+  "error": {
+    "code": "model_configuration",
+    "message": "live mode requires OPENAI_API_KEY and OPENAI_MODEL; no fallback to mock"
+  }
+}

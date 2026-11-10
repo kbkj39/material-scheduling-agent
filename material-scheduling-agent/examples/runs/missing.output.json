@@ -1,0 +1,68 @@
+{
+  "request_id": "example_missing",
+  "mode": "mock",
+  "status": "needs_information",
+  "stop_reason": "model_finished",
+  "published": false,
+  "message": "素材信息不足，请补充后重试。",
+  "items": [
+    {
+      "asset_id": "M02",
+      "requested_at": "2026-11-11T19:00:00+08:00",
+      "suggested_at": null,
+      "audit_status": "needs_information",
+      "risks": [],
+      "pending_confirmations": [],
+      "missing_fields": [
+        "rights"
+      ],
+      "draft": {
+        "status": "not_attempted"
+      },
+      "status": "needs_information",
+      "errors": []
+    }
+  ],
+  "trace": [
+    {
+      "step": 1,
+      "action": "read_material",
+      "arguments": {
+        "asset_id": "M02"
+      },
+      "reason": "[MOCK] 先读取素材，核对可用信息。",
+      "observation": {
+        "ok": true,
+        "asset_id": "M02",
+        "material": {
+          "title": "新手剪辑教程",
+          "platform": "抖音",
+          "content": "分步介绍剪辑操作。",
+          "source_id": "SYNTHETIC-02"
+        },
+        "missing_fields": [
+          "rights"
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "action": "finish",
+      "arguments": {
+        "status": "needs_information",
+        "message": "模拟决策结束；最终事实以工具回执为准。"
+      },
+      "reason": "[MOCK] 已处理可执行步骤，返回草稿与待处理事项。",
+      "observation": {
+        "ok": true,
+        "note": "Final task status is derived from tool evidence."
+      }
+    }
+  ],
+  "limits": {
+    "max_steps": 20,
+    "model_turns": 2,
+    "tool_calls": 1
+  },
+  "duration_seconds": 0.0
+}

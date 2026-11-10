@@ -1,0 +1,52 @@
+{
+  "request_id": "example_step_limit",
+  "mode": "mock",
+  "status": "incomplete",
+  "stop_reason": "step_limit",
+  "published": false,
+  "message": "任务未完成，请查看调用上限或缺少的执行步骤。",
+  "items": [
+    {
+      "asset_id": "M01",
+      "requested_at": "2026-11-11T19:00:00+08:00",
+      "suggested_at": null,
+      "audit_status": "unknown",
+      "risks": [],
+      "pending_confirmations": [],
+      "missing_fields": [],
+      "draft": {
+        "status": "not_attempted"
+      },
+      "status": "incomplete",
+      "errors": []
+    }
+  ],
+  "trace": [
+    {
+      "step": 1,
+      "action": "read_material",
+      "arguments": {
+        "asset_id": "M01"
+      },
+      "reason": "[MOCK] 先读取素材，核对可用信息。",
+      "observation": {
+        "ok": true,
+        "asset_id": "M01",
+        "material": {
+          "title": "字幕编辑功能演示",
+          "platform": "抖音",
+          "content": "演示字幕编辑与导出操作。",
+          "rights": "cleared",
+          "source_id": "SYNTHETIC-01"
+        },
+        "missing_fields": []
+      }
+    }
+  ],
+  "limits": {
+    "max_steps": 1,
+    "model_turns": 1,
+    "tool_calls": 1
+  },
+  "duration_seconds": 0.0
+}

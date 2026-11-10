@@ -1,0 +1,10 @@
+{
+  "request_id": "example_step_limit",
+  "materials": [
+    {
+      "asset_id": "M01",
+      "required_at": "2026-11-11T19:00:00+08:00",
+      "hard_requirement": true
+    }
+  ]
+}

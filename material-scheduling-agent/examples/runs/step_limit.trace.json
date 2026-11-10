@@ -1,0 +1,22 @@
+[
+  {
+    "step": 1,
+    "action": "read_material",
+    "arguments": {
+      "asset_id": "M01"
+    },
+    "reason": "[MOCK] 先读取素材，核对可用信息。",
+    "observation": {
+      "ok": true,
+      "asset_id": "M01",
+      "material": {
+        "title": "字幕编辑功能演示",
+        "platform": "抖音",
+        "content": "演示字幕编辑与导出操作。",
+        "rights": "cleared",
+        "source_id": "SYNTHETIC-01"
+      },
+      "missing_fields": []
+    }
+  }
+]
